@@ -1,0 +1,51 @@
+def calc(a, b, operation):
+    if operation == "+":
+        return a + b
+    elif operation == "-":
+        return a - b
+    elif operation == "*":
+        return a * b
+    elif operation == "/":
+        if b == 0:
+            return "на нуль ділити не можна"
+        return a / b
+    else:
+        return "введіте корректную операцию"
+    
+    
+    get_last_digit = lambda x: abs(x) % 10
+    
+    
+    
+    numbers = [1, 2, 3, 4, 5]
+
+squares = list(map(lambda x: x**2, numbers))
+
+print(squares)
+
+
+
+words = ["dgggrg", "ban", "hgfvdgfs", "ofe", "hgv", "p"]
+
+filtered_words = list(filter(lambda w: len(w) > 5, words))
+
+print(filtered_words)
+
+
+
+
+students = [
+    {"name": "Ivan", "age": 18},
+    {"name": "Olya", "age": 20},
+    {"name": "Max", "age": 17}
+]
+
+sorted_students = sorted(students, key=lambda s: s["age"])
+
+print(sorted_students)
+
+
+
+
+
+
