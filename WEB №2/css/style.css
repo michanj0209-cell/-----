@@ -1,0 +1,17 @@
+img {
+    margin-bottom: 100px;
+}
+p {
+    margin-bottom: 100px;
+}
+.blue-text {
+    color: blue;
+}
+.green-text {
+    color: green;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.red-text {
+    color: red;
+}
