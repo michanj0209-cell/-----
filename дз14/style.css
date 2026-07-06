@@ -1,0 +1,177 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #0b1c2e;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #071322;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 16px;
+}
+
+.auth-lang {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn-login {
+    background-color: #0099ff;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.lang-switch {
+    font-size: 14px;
+    color: #778899;
+}
+
+.active-lang {
+    color: #ffffff;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.hero-section {
+    background-color: #0d233a;
+    height: 550px;
+    padding: 60px 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 450px;
+}
+
+.quote {
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.author {
+    text-align: right;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    color: #aaaaaa;
+}
+
+.btn-primary {
+    background-color: transparent;
+    border: 1px solid #0099ff;
+    color: white;
+    padding: 12px 35px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.social-icons {
+    position: absolute;
+    bottom: 30px;
+    right: 100px;
+    display: flex;
+    gap: 15px;
+}
+
+.white-section {
+    background-color: #ffffff;
+    color: #000000;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.middle-quote {
+    font-size: 20px;
+    font-weight: bold;
+    max-width: 600px;
+    margin: 0 auto 10px auto;
+}
+
+.middle-author {
+    color: #555555;
+    margin-bottom: 20px;
+}
+
+.hp-badge {
+    font-weight: bold;
+    color: #b8860b;
+    font-size: 24px;
+}
+
+.banner-section {
+    background-color: #091a2c;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cards-section {
+    padding: 60px 50px;
+    background-color: #071322;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 28px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.spell-card {
+    background-color: #11253d;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid #223a59;
+}
+
+.spell-card h3 {
+    margin-top: 0;
+    color: #0099ff;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: #060e18;
+    padding: 40px 50px;
+    font-size: 14px;
+    color: #8899aa;
+}
+
+.footer-logo {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
