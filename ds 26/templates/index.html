@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Головна сторінка{% endblock %}
+
+{% block content %}
+    <div class="card text-center">
+        <h1>Планувальник завдань Flask</h1>
+        <p class="subtitle">Це простий навчальний веб-додаток для керування щоденними справами.</p>
+        <p>Проєкт розроблено на основі фреймворку <strong>Flask</strong> з використанням вбудованої бази даних <strong>SQLite</strong> для надійного збережения інформації про ваші завдання.</p>
+        <div style="margin-top: 30px;">
+            <a href="{{ url_for('planner') }}" class="btn btn-primary">Перейти до планувальника</a>
+        </div>
+    </div>
+{% endblock %}

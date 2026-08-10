@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Планувальник завдань{% endblock %}
+
+{% block content %}
+    <h1>Планувальник завдань</h1>
+
+    <div class="card">
+        <h2>Додати нове завдання</h2>
+        <form method="POST" action="{{ url_for('add_task') }}">
+            <div class="form-group">
+                <label for="title">Назва завдання *</label>
+                <input type="text" id="title" name="title" required placeholder="Введіть назву завдання...">
+            </div>
+            <div class="form-group">
+                <label for="description">Опис завдання</label>
+                <textarea id="description" name="description" rows="3" placeholder="Додайте короткий опис справи..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Додати завдання</button>
+        </form>
+    </div>
+
+    <div class="tasks-section">
+        <h2>Список ваших завдань</h2>
+        {% if tasks %}
+            {% for task in tasks %}
+                <div class="task-item {% if task['is_completed'] == 1 %}completed{% endif %}">
+                    <div class="task-content">
+                        <h3>{{ task['title'] }}</h3>
+                        {% if task['description'] %}
+                            <p class="task-desc">{{ task['description'] }}</p>
+                        {% endif %}
+                        <small class="task-date">Створено: {{ task['created_at'] }}</small>
+                    </div>
+                    
+                    <div class="task-actions">
+                        <form action="{{ url_for('complete_task', task_id=task['id']) }}" method="POST" style="display:inline;">
+                            {% if task['is_completed'] == 1 %}
+                                <button type="submit" class="btn btn-warning">Повернути</button>
+                            {% else %}
+                                <button type="submit" class="btn btn-info">Виконано</button>
+                            {% endif %}
+                        </form>
+
+                        <form action="{{ url_for('delete_task', task_id=task['id']) }}" method="POST" onsubmit="return confirm('Ви впевнені, що хочете видалити це завдання?');" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Видалити</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-tasks">У вас поки немає запланованих завдань. Створіть перше вище!</p>
+        {% endif %}
+    </div>
+{% endblock %}
+
