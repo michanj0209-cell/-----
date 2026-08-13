@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Бібліотека{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">Головна</a> | 
+        <a href="{{ url_for('about_me') }}">Про себе</a> | 
+        <a href="{{ url_for('about_library') }}">Про бібліотеку</a>
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2026 Моя бібліотека</p>
+    </footer>
+</body>
+</html>
