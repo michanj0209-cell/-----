@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ООП Панель Керування</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f6f9; color: #333; margin: 0; padding: 20px; }
+        h1 { text-align: center; color: #2c3e50; }
+        .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .card h2 { margin-top: 0; color: #34495e; border-bottom: 2px solid #ecf0f1; padding-bottom: 10px; }
+        .status-val { font-weight: bold; color: #2ecc71; }
+        input { width: calc(100% - 22px); padding: 8px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; }
+        button { width: 100%; padding: 10px; background: #3498db; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-bottom: 5px; }
+        button:hover { background: #2980b9; }
+        button.danger { background: #e74c3c; }
+        button.danger:hover { background: #c0392b; }
+    </style>
+</head>
+<body>
+
+    <h1>Панель інтерактивного тестування класів Python</h1>
+    
+    <div class="container">
+        <div class="card">
+            <h2>1. BankAccount</h2>
+            <p>Баланс: <span id="balance" class="status-val">0</span> грн</p>
+            <input type="number" id="bank-input" placeholder="Сума">
+            <button onclick="sendAction('deposit', 'bank-input')">Поповнити (deposit)</button>
+            <button onclick="sendAction('withdraw', 'bank-input')" class="danger">Зняти (withdraw)</button>
+        </div>
+
+        <div class="card">
+            <h2>2. UserProfile</h2>
+            <p>Email: <span id="email" class="status-val">-</span></p>
+            <input type="text" id="email-input" placeholder="Новий email">
+            <button onclick="sendAction('set_email', 'email-input')">Оновити Email</button>
+        </div>
+
+        <div class="card">
+            <h2>3. Battery</h2>
+            <p>Заряд: <span id="charge" class="status-val">100</span>%</p>
+            <input type="number" id="battery-input" placeholder="Значення (0-100)">
+            <button onclick="sendAction('set_charge', 'battery-input')">Встановити заряд</button>
+        </div>
+
+        <div class="card">
+            <h2>4. Speaker</h2>
+            <p>Гучність: <span id="volume" class="status-val">5</span>/10</p>
+            <input type="number" id="speaker-input" placeholder="Значення (0-10)">
+            <button onclick="sendAction('set_volume', 'speaker-input')">Змінити гучність</button>
+        </div>
+
+        <div class="card">
+            <h2>5. Character</h2>
+            <p>Здоров'я: <span id="health" class="status-val">100</span> HP</p>
+            <input type="number" id="hero-input" placeholder="Кількість">
+            <button onclick="sendAction('heal', 'hero-input')">Лікувати (heal)</button>
+            <button onclick="sendAction('damage', 'hero-input')" class="danger">Шкода (damage)</button>
+        </div>
+
+        <div class="card">
+            <h2>6. PasswordManager</h2>
+            <p>Статус пароля: <span class="status-val">Захищено</span></p>
+            <input type="password" id="old-pass" placeholder="Старий пароль">
+            <input type="password" id="new-pass" placeholder="Новий пароль (>=8 симв.)">
+            <button onclick="changePassword()">Змінити пароль</button>
+        </div>
+    </div>
+
+    <script>
+        async function updateStatus() {
+            const res = await fetch('/api/status');
+            const data = await res.json();
+            document.getElementById('balance').innerText = data.balance;
+            document.getElementById('email').innerText = data.email;
+            document.getElementById('charge').innerText = data.charge;
+            document.getElementById('volume').innerText = data.volume;
+            document.getElementById('health').innerText = data.health;
+        }
+
+        async function sendAction(action, inputId) {
+            const val = document.getElementById(inputId).value;
+            if(!val) return;
+            await fetch(`/api/action/${action}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ value: val })
+            });
+            updateStatus();
+            document.getElementById(inputId).value = '';
+        }
+
+        async function changePassword() {
+            const oldP = document.getElementById('old-pass').value;
+            const newP = document.getElementById('new-pass').value;
+            await fetch('/api/action/change_password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ old: oldP, new: newP })
+            });
+            document.getElementById('old-pass').value = '';
+            document.getElementById('new-pass').value = '';
+            alert('Запит на зміну пароля надіслано! Результат перевіряйте в консолі сервера Render.');
+        }
+
+        updateStatus();
+    </script>
+</body>
+</html>
